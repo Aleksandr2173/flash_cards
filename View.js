@@ -23,7 +23,6 @@ class View {
 
     return [gamer, txtFile[[index]]];
   }
-
   
 }
 

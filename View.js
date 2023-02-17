@@ -23,12 +23,36 @@ class View {
 
     return [gamer, txtFile[[index]]];
   }
-  
+
+  questionAnswer(questions, answers) {
+    let coins = 0;
+    let gamer = "";
+    for (let i = 0; i <= questions.length; i++) {
+      if (i === questions.length) {
+        return;
+      } else {
+        let answersI = readlineSync.question(`\n${questions[i]}\n`);
+        if (answersI === answers[i]) {
+          coins = coins + 1;
+          console.log("Это верный ответ + 1🪙");
+        } else {
+          console.log("Увы это неверный ответ ❌");
+        }
+      }
+    }
+  }
+
+  finalFar(gamer, coins) {
+    console.log(`\n${gamer} ты молодец 💪\nты заработал ${coins}🪙`);
+  }
 }
 
-const view1 = new View;
-// console.log(view1.choiceTheme());
-// console.log(view1.questionAnswer(['A?', 'B?', 'C?'], ['a', 'b', 'c']));
-console.log(view1.finalFar('fdfds', '3'));
+const view1 = new View();
+
+console.log(
+  view1.choiceTheme(),
+  view1.questionAnswer(["A?", "B?", "C?"], ["a", "b", "c"]),
+  view1.finalFar()
+);
 
 module.exports = View;

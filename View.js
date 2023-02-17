@@ -2,11 +2,15 @@ const readlineSync = require('readline-sync');
 const fs = require('fs');
 
 class View {
+  constructor(gamer, coins) {
+    this.gamer = gamer;
+    this.coins = coins;
+  }
   choiceTheme() {
     //Приветствие и выбор темы(файл .txt)
-    const userName = readlineSync.question('Напиши свой Ник 🤔\n');
-    console.log('Привет ' + userName + ' ✋');
-    const gamer = userName;
+    const userName = readlineSync.question("Напиши свой Ник 🤔\n");
+    console.log("Привет " + userName + " ✋");
+    this.gamer = userName;
 
     const txtFile = [
       `${__dirname}/topics/nighthawk_flashcard_data.txt`,
@@ -21,20 +25,19 @@ class View {
       );
     console.log('Класс❗ ' + animals[index] + ', отличный выбор темы 👍');
 
-    return [gamer, txtFile[[index]]];
+    return [this.gamer, txtFile[[index]]];
   }
 
   questionAnswer(questions, answers) {
-    let coins = 0;
-    let gamer = '';
+    this.coins = 0;
     for (let i = 0; i <= questions.length; i++) {
       if (i === questions.length) {
         return;
       } else {
         let answersI = readlineSync.question(`\n${questions[i]}\n`);
         if (answersI === answers[i]) {
-          coins = coins + 1;
-          console.log('Это верный ответ + 1🪙');
+          this.coins += 1;
+          console.log("Это верный ответ + 1🪙");
         } else {
           console.log('Увы это неверный ответ ❌');
         }
@@ -48,11 +51,10 @@ class View {
 }
 
 // const view1 = new View();
-
-// console.log(
-//   view1.choiceTheme(),
-//   view1.questionAnswer(["A?", "B?", "C?"], ["a", "b", "c"]),
-//   view1.finalFar()
-// );
+console.log(
+  view1.choiceTheme(),
+  view1.questionAnswer(["A?", "B?", "C?"], ["a", "b", "c"]),
+  view1.finalFar(view1.gamer, view1.coins)
+);
 
 module.exports = View;

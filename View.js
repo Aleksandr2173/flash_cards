@@ -2,14 +2,15 @@ const readlineSync = require('readline-sync');
 const fs = require('fs');
 
 class View {
-  constructor(gamer, coins) {
+  constructor(gamer, coins, txtFile) {
     this.gamer = gamer;
     this.coins = coins;
+    this.txtFile = txtFile;
   }
   choiceTheme() {
     //Приветствие и выбор темы(файл .txt)
-    const userName = readlineSync.question("Напиши свой Ник 🤔\n");
-    console.log("Привет " + userName + " ✋");
+    const userName = readlineSync.question('Напиши свой Ник 🤔\n');
+    console.log('Привет ' + userName + ' ✋');
     this.gamer = userName;
 
     const txtFile = [
@@ -18,14 +19,14 @@ class View {
       `${__dirname}/topics/raccoon_flashcard_data.txt`,
     ];
     const choiceTheme = require('readline-sync'),
-      animals = ['Ястребы', 'Выдры', 'Еноты'],
+      animals = ['Животные', 'Космос', 'IT'],
       index = choiceTheme.keyInSelect(
         animals,
         'Какую тему ты хочешь выбрать❓ 🤔\n'
       );
     console.log('Класс❗ ' + animals[index] + ', отличный выбор темы 👍');
 
-    return [this.gamer, txtFile[[index]]];
+    return [this.gamer, (this.txtFile = txtFile[[index]])];
   }
 
   questionAnswer(questions, answers) {
@@ -37,7 +38,7 @@ class View {
         let answersI = readlineSync.question(`\n${questions[i]}\n`);
         if (answersI === answers[i]) {
           this.coins += 1;
-          console.log("Это верный ответ + 1🪙");
+          console.log('Это верный ответ + 1🪙');
         } else {
           console.log('Увы это неверный ответ ❌');
         }
@@ -49,12 +50,5 @@ class View {
     console.log(`\n${gamer} ты молодец 💪\nты заработал ${coins}🪙`);
   }
 }
-
-// const view1 = new View();
-console.log(
-  view1.choiceTheme(),
-  view1.questionAnswer(["A?", "B?", "C?"], ["a", "b", "c"]),
-  view1.finalFar(view1.gamer, view1.coins)
-);
 
 module.exports = View;

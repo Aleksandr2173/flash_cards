@@ -1,7 +1,8 @@
 const fsp = require('fs').promises;
 const fs = require('fs');
-const { removeAllListeners } = require('process');
-class ReadFile {
+
+class TopicsReader {
+
   questions(path) {
     let textQ = fs
       .readFileSync(`${path}`, 'utf-8')
@@ -10,12 +11,10 @@ class ReadFile {
       .map((el) => el.split(','));
     let takeQues = [];
     for (let i = 0; i < textQ.length; i++) {
-      console.log(textQ[i / 2]);
       if (textQ[i / 2]) {
         takeQues.push(textQ[i]);
       }
     }
-    console.log(takeQues);
 
     return takeQues.flat();
   }
@@ -27,15 +26,16 @@ class ReadFile {
       .map((el) => el.split(','));
     let takeAnsw = [];
     for (let i = 0; i < textA.length; i++) {
-      console.log(textA[i / 2]);
       if (textA[i / 2]) {
+        const arr = 0;
+      } else {
         takeAnsw.push(textA[i]);
       }
     }
-    console.log(takeAnsw);
     return takeAnsw.flat();
   }
 }
+<<<<<<< HEAD:read.js
 
 module.exports = ReadFile;
 
@@ -70,3 +70,6 @@ for (let i = 0; i < text.length; i++) {
 }
 console.log(rom.flat());
 console.log(roma.flat());
+
+module.exports = TopicsReader;
+

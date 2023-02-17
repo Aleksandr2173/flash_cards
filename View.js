@@ -1,5 +1,5 @@
-const readlineSync = require("readline-sync");
-const fs = require("fs");
+const readlineSync = require('readline-sync');
+const fs = require('fs');
 
 class View {
   constructor(gamer, coins) {
@@ -17,13 +17,13 @@ class View {
       `${__dirname}/topics/otter_flashcard_data.txt`,
       `${__dirname}/topics/raccoon_flashcard_data.txt`,
     ];
-    const choiceTheme = require("readline-sync"),
-      animals = ["Ястребы", "Выдры", "Еноты"],
+    const choiceTheme = require('readline-sync'),
+      animals = ['Ястребы', 'Выдры', 'Еноты'],
       index = choiceTheme.keyInSelect(
         animals,
-        "Какую тему ты хочешь выбрать❓ 🤔\n"
+        'Какую тему ты хочешь выбрать❓ 🤔\n'
       );
-    console.log("Класс❗ " + animals[index] + ", отличный выбор темы 👍");
+    console.log('Класс❗ ' + animals[index] + ', отличный выбор темы 👍');
 
     return [this.gamer, txtFile[[index]]];
   }
@@ -39,7 +39,7 @@ class View {
           this.coins += 1;
           console.log("Это верный ответ + 1🪙");
         } else {
-          console.log("Увы это неверный ответ ❌");
+          console.log('Увы это неверный ответ ❌');
         }
       }
     }
@@ -50,8 +50,7 @@ class View {
   }
 }
 
-const view1 = new View();
-
+// const view1 = new View();
 console.log(
   view1.choiceTheme(),
   view1.questionAnswer(["A?", "B?", "C?"], ["a", "b", "c"]),

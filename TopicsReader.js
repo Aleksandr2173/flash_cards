@@ -25,11 +25,17 @@ class TopicsReader {
     let takeAnsw = [];
     for (let i = 0; i < textA.length; i++) {
       if (textA[i / 2]) {
+        const arr = 0;
+      } else {
         takeAnsw.push(textA[i]);
       }
     }
     return takeAnsw.flat();
   }
 }
-
+// const topic = new TopicsReader();
+// console.log(topic.answers(`${__dirname}/topics/nighthawk_flashcard_data.txt`));
+// // console.log(
+// //   topic.questions(`${__dirname}/topics/nighthawk_flashcard_data.txt`)
+// // );
 module.exports = TopicsReader;
